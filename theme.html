@@ -1,19 +1,23 @@
 <!-- a theme by goose -->
 <!-- http://goose.im/ -->
-<!DOCTYPE html>
-<html>
+<!doctype html>
 <head>
 <link rel="shortcut icon" href="{Favicon}" type="image/x-icon" />
 
     <title>{Title}{block:PostTitle}: {PostTitle}{/block:PostTitle}</title>	
+     <meta name="image:Header" content=""/>
+     
      <meta name="color:ursaMajor" content="#18c0c2"/>
      <meta name="color:ursaMinor" content="#f5bed1"/>
      <meta name="image:Sidebar" content=""/>
      <meta name="image:Sprite" content=""/>
+     <meta name="if:Sans serif Font" content="false"/>
      <meta name="if:Dark Lines" content="true"/>
+     <meta name="if:Sidebar on Left" content="false"/>
      <meta name="if:Like and Reblog buttons" content="true"/>
      <meta name="if:Infinite Scroll" content="true"/>
      <meta name="if:Dropdown Nav" content="true"/>
+     <meta name="if:No Image Fade" content="false"/>
      <meta name="if:Stretch Images to Fit" content="true"/>
      <meta name="if:Stop Gifs" content="true"/>
      <meta name="if:Hover Transition" content="true"/>
@@ -24,6 +28,7 @@
      <link rel="alternate" type="application/rss+xml" href="{RSS}">
 
 
+        
     <script type="text/javascript" src="http://static.tumblr.com/vnvj8kg/Gc0n0ur7y/jquery.min.js"></script>
 <script type="text/javascript" src="http://static.tumblr.com/vnvj8kg/y5Gn0ur2d/jquery.infinitescroll.js"></script>
 	<style type="text/css">
@@ -36,6 +41,9 @@
 			background: linear-gradient(to bottom, {color:ursaMajor} 0%,{color:ursaMinor} 100%);
 			background-attachment:fixed;
 			font-family:monospace;
+			{block:ifSansSerifFont}
+			font-family:Helvetica Neue, Arial, sans-serif;
+			{/block:ifSansSerifFont}
 			font-size:12px;
 			color:#fff;
 			{block:ifDarkLines}
@@ -106,6 +114,7 @@
 		    opacity:0.9;
 		}
 		header a:hover {opacity:1;}
+		header img {max-width:506px;margin-left:4px;}
 		
 		.right {
 		    width:200px;
@@ -257,7 +266,7 @@
 .gamma .gifoverlay {position:absolute;outline:solid 3px #fff;color:#ddd;{block:ifDarkLines}outline:solid 3px #000;color:#333;{/block:ifDarkLines};z-index:2000;padding:8px 7px 6px 7px;font-size:20px;width:24px;text-indent:4px;}
 .gamma .gifoverlay:hover {text-decoration:none;}
 
-.nogif .gifoverlay, .sprite .gifoverlay {display:none;}
+.nogif .gifoverlay, .sprite .gifoverlay, header .gifoverlay {display:none;}
 
 .gamma pre {border:solid 3px #fff;background:rgba(255,255,255,0.8);color:#000;{block:ifDarkLines}border:solid 3px #000;background:rgba(0,0,0,0.8);color:#fff;{/block:ifDarkLines};width:461px;overflow-x:scroll;padding:7px;}
 .gamma pre a {color:#fff!important;}
@@ -265,7 +274,19 @@
 .gamma blockquote blockquote pre {width:385px;}
 .gamma blockquote blockquote blockquote pre {width:357px;} 
 
- {CustomCSS}
+{block:ifSidebarOnLeft}
+.right {float:left!important}
+.delta {float:right!important}
+header {text-indent: -180px!important}
+.pagination {float:right!important;}
+{/block:ifSidebarOnLeft}
+{block:ifNoImageFade}
+.beta {opacity:1!important;}
+.sidebar {opacity:1!important;}
+{/block:ifNoImageFade}
+
+{CustomCSS}
+
 	</style>
 	<script type="text/javascript">
 	    $(document).ready(function() {
@@ -304,13 +325,13 @@
 	    
 	    <section class="right">
 		    {block:IfSpriteImage}
-		    <section class="sprite"><center><a href="{BlogURL}"><img src="{image:Sprite}"\></a></center></section>
+		    <section class="sprite"><center><a href="{BlogURL}"><img src="{image:Sprite}"></a></center></section>
             {/block:IfSpriteImage}
 
 		    <section class="sidebar">
 		    	{block:IfSidebarImage}
 		    	<section class="gamma barpix pix">
-		    	    <a href="{BlogURL}"><img src="{image:Sidebar}"\></a>
+		    	    <a href="{BlogURL}"><img src="{image:Sidebar}"></a>
 		    	</section>
 		    	{/block:IfSidebarImage}
                 <section class="gamma">
@@ -353,9 +374,11 @@
             {/block:ifNotDropdownNav}
         </section>
 	
-		<header><a href="{BlogURL}">{Title}</a></header>
+		<header><a href="{BlogURL}">{block:ifHeaderImage}<img src="{image:Header}">{/block:ifHeaderImage}{block:ifNotHeaderImage}{Title}{/block:ifNotHeaderImage}</a></header>
 	
 	<section class="delta">
+	{block:DayPage}<header>posts from {Month} {DayOfMonth}, {Year}</header>{/block:DayPage}
+	{block:TagPage}<header>posts tagged with #{Tag}</header>{/block:TagPage}
     {block:Posts}
 		<section class="post beta">
 		{block:Link} 
@@ -592,4 +615,3 @@ $('.delta').infinitescroll({
 </script>
 {/block:ifInfiniteScroll}
 </body>
-</html>
