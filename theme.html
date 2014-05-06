@@ -1,6 +1,7 @@
 <!-- a theme by goose -->
 <!-- http://goose.im/ -->
-<!doctype html>
+<!DOCTYPE html>
+<html>
 <head>
 <link rel="shortcut icon" href="{Favicon}" type="image/x-icon" />
 
@@ -42,7 +43,7 @@
 			background-attachment:fixed;
 			font-family:monospace;
 			{block:ifSansSerifFont}
-			font-family:Helvetica Neue, Arial, sans-serif;
+			font-family:'Helvetica Neue', Arial, sans-serif;
 			{/block:ifSansSerifFont}
 			font-size:12px;
 			color:#fff;
@@ -409,7 +410,7 @@ header {text-indent: -180px!important}
 			{/block:Title}
 			<section class="body gamma chat">
 				{block:Lines}
-				    <section class="line">{block:Label}<b>{Label}</b> {Line}{/block:Label}</section>
+				    <section class="line">{block:Label}<b>{Label}</b> {/block:Label}{Line}</section>
 				{/block:Lines}
 			</section>
 	    {/block:Chat} 
@@ -615,3 +616,4 @@ $('.delta').infinitescroll({
 </script>
 {/block:ifInfiniteScroll}
 </body>
+</html>
