@@ -1,5 +1,5 @@
-<!-- a theme by goose -->
-<!-- http://goose.im/#/ -->
+<!-- chromosphere theme by alex baldwin -->
+<!-- bldwn.co -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -251,12 +251,13 @@
         .link a:hover {text-decoration:line-through;}
         .gogogo {vertical-align:-1px;}
 
-        .gamma p img {max-width:478px;}
-        .gamma blockquote p img {max-width:430px;}
-        .gamma blockquote blockquote p img {max-width:402px;}
-        .gamma blockquote blockquote blockquote p img {max-width:374px;}
-        .gamma blockquote blockquote blockquote blockquote p img {max-width:346px;}
-        .gamma blockquote blockquote blockquote blockquote blockquote p img {max-width:318px;}
+        /* update to work with newer post format */
+        .gamma blockquote blockquote {margin-left:0.1em;}
+        .gamma figure {margin-top:1em;}
+        .gamma figure img {max-width:100%;}
+        .gamma figure:first-child {margin-top:0;}
+        .gamma blockquote+img,
+        .gamma blockquote>img {max-width:100%;margin-top:1em;}
         
         {block:ifStretchImagestoFit}.pix img {width:500px;}{/block:ifStretchImagestoFit}
         
